@@ -7,7 +7,7 @@ This blueprint is based on the blueprint of Veams-Components.
 ### Include: SCSS
 
 ``` scss
-// @INSERT :: START @id: scss-import, @tag: block
+// @INSERT :: START @id: scss-import
 @import "blocks/_b-overlay";
 // @INSERT :: END
 ```
@@ -16,14 +16,14 @@ This blueprint is based on the blueprint of Veams-Components.
 
 #### Import
 ``` js
-// @INSERT :: START @id: js-import, @tag: block
+// @INSERT :: START @id: js-import
 import Overlay from './modules/overlay/overlay';
 // @INSERT :: END
 ```
 
 #### Initializing in Veams V2
 ``` js
-// @INSERT :: START @id: js-init-once-v2, @tag: block
+// @INSERT :: START @id: js-init-once-v2
 /**
 * Init overlay
 */
@@ -33,7 +33,7 @@ new Overlay();
 
 #### Initializing in Veams V3
 ``` js
-// @INSERT :: START @id: js-init-once-v3, @tag: block
+// @INSERT :: START @id: js-init-once-v3
 /**
 * Init overlay
 */
