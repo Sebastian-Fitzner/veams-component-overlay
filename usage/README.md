@@ -40,3 +40,14 @@ new Overlay();
 new Overlay();
 // @INSERT :: END
 ```
+#### Custom Events
+``` js
+// @INSERT :: START @tag: js-events //
+/**
+ * Events Overlay
+ */
+EVENTS.overlay = {
+	open: 'overlay:open'
+};
+// @INSERT :: END
+```

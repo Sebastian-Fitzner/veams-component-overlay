@@ -49,6 +49,7 @@ class Overlay extends AppModule {
 	get overlayCreated() {
 		return this._overlayCreated;
 	}
+
 	set overlayCreated(bol) {
 		this._overlayCreated = bol;
 	}
@@ -57,6 +58,7 @@ class Overlay extends AppModule {
 	get isOpen() {
 		return this._isOpen;
 	}
+
 	set isOpen(bol) {
 		this._isOpen = bol;
 	}
@@ -65,6 +67,7 @@ class Overlay extends AppModule {
 	get overlay() {
 		return this._overlay;
 	}
+
 	set overlay(el) {
 		this._overlay = el;
 	}
@@ -73,6 +76,7 @@ class Overlay extends AppModule {
 	get mask() {
 		return this._mask;
 	}
+
 	set mask(el) {
 		this._mask = el;
 	}
@@ -81,6 +85,7 @@ class Overlay extends AppModule {
 	get closeBtn() {
 		return this._closeBtn;
 	}
+
 	set closeBtn(el) {
 		this._closeBtn = el;
 	}
@@ -89,6 +94,7 @@ class Overlay extends AppModule {
 	get regionContent() {
 		return this._regionContent;
 	}
+
 	set regionContent(el) {
 		this._regionContent = el;
 	}
@@ -112,12 +118,14 @@ class Overlay extends AppModule {
 		let render = this.render.bind(this);
 
 		// Global events
-		App.Vent.on(App.EVENTS.overlayOpen, render);
+		App.Vent.on(App.EVENTS.overlay.open, render);
 
 		// Close overlay with ESC
 		$(window).on('keyup', (e) => {
-			if (e.keyCode == 27 && this.isOpen) this.close();
-		})
+			if (e.keyCode == 27 && this.isOpen) {
+				this.close();
+			}
+		});
 	}
 
 	/**
@@ -151,7 +159,7 @@ class Overlay extends AppModule {
 	render(obj) {
 		// Check if data object is provided
 		if (!obj.data) {
-			console.log('You have to provide an object with data (obj.data)!');
+			console.warn('You have to provide an object with data (obj.data)!');
 			return;
 		}
 
