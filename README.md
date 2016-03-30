@@ -2,6 +2,10 @@
 
 This blueprint is based on the blueprint of Veams-Components.
 
+It represents an overlay module. This module is responsible to create an overlay without predefining any inner overlay template.
+
+It should be used by other modules to display their content in an overlay.
+
 ## Usage
 
 ### Include: SCSS
