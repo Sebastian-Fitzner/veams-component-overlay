@@ -8,7 +8,7 @@
  * to display their content in an overlay.
  *
  * @module Overlay
- * @version v1.0.4
+ * @version v1.0.5
  *
  * @author Sebastian Fitzner
  */
@@ -53,7 +53,7 @@ class Overlay extends AppModule {
 	static get info() {
 		return {
 			name: 'Overlay',
-			version: '1.0.4',
+			version: '1.0.5',
 			vc: true,
 			mod: false // set to true if source was modified in project
 		};
