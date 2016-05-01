@@ -7,7 +7,8 @@
  * It should be used by other modules
  * to display their content in an overlay.
  *
- * @module overlay
+ * @module Overlay
+ * @version v1.0.4
  *
  * @author Sebastian Fitzner
  */
@@ -41,9 +42,22 @@ class Overlay extends AppModule {
 		};
 
 		super(obj, options);
+		App.registerModule && App.registerModule(Overlay.info, this.el);
 	}
 
 	// GETTER AND SETTER
+
+	/**
+	 * Get module information
+	 */
+	static get info() {
+		return {
+			name: 'Overlay',
+			version: '1.0.4',
+			vc: true,
+			mod: false // set to true if source was modified in project
+		};
+	}
 
 	// set and get infos if overlay is created
 	get overlayCreated() {
