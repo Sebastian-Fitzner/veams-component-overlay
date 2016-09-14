@@ -8,7 +8,7 @@
  * to display their content in an overlay.
  *
  * @module Overlay
- * @version v1.0.5
+ * @version v1.0.6
  *
  * @author Sebastian Fitzner
  */
@@ -37,7 +37,6 @@ class Overlay extends AppModule {
 			openClass: 'is-open',
 			closeBtn: '[data-js-atom="overlay-close"]',
 			overlay: '[data-js-atom="overlay"]',
-			mask: '[data-js-atom="overlay-mask"]',
 			regionContent: '[data-js-atom="overlay-content"]'
 		};
 
@@ -53,7 +52,7 @@ class Overlay extends AppModule {
 	static get info() {
 		return {
 			name: 'Overlay',
-			version: '1.0.5',
+			version: '1.0.6',
 			vc: true,
 			mod: false // set to true if source was modified in project
 		};
@@ -78,39 +77,30 @@ class Overlay extends AppModule {
 	}
 
 	// set and get overlay element after creation
-	get overlay() {
-		return this._overlay;
+	get $overlay() {
+		return this._$overlay;
 	}
 
-	set overlay(el) {
-		this._overlay = el;
-	}
-
-	// set and get overlay mask after creation
-	get mask() {
-		return this._mask;
-	}
-
-	set mask(el) {
-		this._mask = el;
+	set $overlay(el) {
+		this._$overlay = el;
 	}
 
 	// set and get close button after creation
-	get closeBtn() {
-		return this._closeBtn;
+	get $closeBtn() {
+		return this._$closeBtn;
 	}
 
-	set closeBtn(el) {
-		this._closeBtn = el;
+	set $closeBtn(el) {
+		this._$closeBtn = el;
 	}
 
 	// set and get content region
-	get regionContent() {
-		return this._regionContent;
+	get $regionContent() {
+		return this._$regionContent;
 	}
 
-	set regionContent(el) {
-		this._regionContent = el;
+	set $regionContent(el) {
+		this._$regionContent = el;
 	}
 
 	/**
@@ -118,7 +108,7 @@ class Overlay extends AppModule {
 	 *
 	 */
 	initialize() {
-		this.body = $('body');
+		this.$body = $('body');
 
 		this.bindEvents();
 	}
@@ -129,13 +119,13 @@ class Overlay extends AppModule {
 	 * Listen to open and close events
 	 */
 	bindEvents() {
-		let render = this.render.bind(this);
+		let fnRender = this.render.bind(this);
 
 		// Global events
-		App.Vent.on(App.EVENTS.overlay.open, render);
+		App.Vent.on(App.EVENTS.overlay.open, fnRender);
 
 		// Close overlay with ESC
-		$(window).on('keyup', (e) => {
+		$(window).on(App.EVENTS.keyup, (e) => {
 			if (e.keyCode == 27 && this.isOpen) {
 				this.close();
 			}
@@ -146,10 +136,10 @@ class Overlay extends AppModule {
 	 * Bind local events
 	 */
 	bindLocalEvents() {
-		let close = this.close.bind(this);
+		let fnClose = this.close.bind(this);
 
 		// Local events
-		this.closeBtn.on('click', close);
+		this.$closeBtn.on(App.EVENTS.click, fnClose);
 	}
 
 	/**
@@ -157,13 +147,13 @@ class Overlay extends AppModule {
 	 */
 	preRender() {
 		// Append FE template
-		this.body.append(Template.OVERLAY);
+		this.$body.append(Template.OVERLAY);
 
 		// Set some references
-		this.overlay = $(this.options.overlay);
-		this.closeBtn = $(this.options.closeBtn, this.overlay);
-		this.regionContent = $(this.options.regionContent, this.overlay);
-		this.mask = $(this.options.mask, this.overlay);
+		this.$overlay = $(this.options.overlay);
+		this.$closeBtn = $(this.options.closeBtn, this.$overlay);
+		this.$regionContent = $(this.options.regionContent, this.$overlay);
+
 		this.overlayCreated = true;
 	}
 
@@ -173,7 +163,7 @@ class Overlay extends AppModule {
 	render(obj) {
 		// Check if data object is provided
 		if (!obj.data) {
-			console.warn('You have to provide an object with data (obj.data)!');
+			console.warn('Overlay: You have to provide an object with data (obj.data)!');
 			return;
 		}
 
@@ -184,7 +174,7 @@ class Overlay extends AppModule {
 		}
 
 		// Append data to overlay region
-		this.regionContent.html(obj.data);
+		this.$regionContent.html(obj.data);
 
 		// Open overlay
 		this.open();
@@ -194,7 +184,7 @@ class Overlay extends AppModule {
 	 * Open Overlay
 	 */
 	open() {
-		this.overlay.addClass(this.options.openClass);
+		this.$overlay.addClass(this.options.openClass);
 		this.isOpen = true;
 	}
 
@@ -202,7 +192,7 @@ class Overlay extends AppModule {
 	 * Close overlay
 	 */
 	close() {
-		this.overlay.removeClass(this.options.openClass);
+		this.$overlay.removeClass(this.options.openClass);
 		this.isOpen = false;
 	}
 }
