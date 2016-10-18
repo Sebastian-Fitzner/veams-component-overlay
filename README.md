@@ -6,6 +6,10 @@ It represents an overlay module. This module is responsible to create an overlay
 
 It should be used by other modules to display their content in an overlay.
 
+## Version
+
+Latest version is ```v2.0.0```
+
 ## Requirements
 
 ### JavaScript
