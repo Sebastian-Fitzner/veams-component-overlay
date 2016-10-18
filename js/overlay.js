@@ -8,7 +8,7 @@
  * to display their content in an overlay.
  *
  * @module Overlay
- * @version v1.0.6
+ * @version v2.0.0
  *
  * @author Sebastian Fitzner
  */
@@ -37,7 +37,8 @@ class Overlay extends AppModule {
 			openClass: 'is-open',
 			closeBtn: '[data-js-atom="overlay-close"]',
 			overlay: '[data-js-atom="overlay"]',
-			regionContent: '[data-js-atom="overlay-content"]'
+			regionContent: '[data-js-atom="overlay-content"]',
+			template: Template['OVERLAY']
 		};
 
 		super(obj, options);
@@ -52,10 +53,19 @@ class Overlay extends AppModule {
 	static get info() {
 		return {
 			name: 'Overlay',
-			version: '1.0.6',
+			version: '2.0.0',
 			vc: true,
 			mod: false // set to true if source was modified in project
 		};
+	}
+
+	// set and get overlay template
+	get template() {
+		return this._template;
+	}
+
+	set template(tpl) {
+		this._template = tpl;
 	}
 
 	// set and get infos if overlay is created
@@ -109,6 +119,7 @@ class Overlay extends AppModule {
 	 */
 	initialize() {
 		this.$body = $('body');
+		this.template = this.options.template;
 
 		this.bindEvents();
 	}
@@ -147,7 +158,7 @@ class Overlay extends AppModule {
 	 */
 	preRender() {
 		// Append FE template
-		this.$body.append(Template.OVERLAY);
+		this.$body.append(this.template());
 
 		// Set some references
 		this.$overlay = $(this.options.overlay);
@@ -161,9 +172,11 @@ class Overlay extends AppModule {
 	 * Render the overlay
 	 */
 	render(obj) {
+		let data = obj.data || (obj.options && obj.options.data);
+
 		// Check if data object is provided
-		if (!obj.data) {
-			console.warn('Overlay: You have to provide an object with data (obj.data)!');
+		if (!data) {
+			console.warn('Overlay: You have to provide an object with data (obj.data || obj.options.data)!');
 			return;
 		}
 
@@ -174,7 +187,7 @@ class Overlay extends AppModule {
 		}
 
 		// Append data to overlay region
-		this.$regionContent.html(obj.data);
+		this.$regionContent.html(data);
 
 		// Open overlay
 		this.open();

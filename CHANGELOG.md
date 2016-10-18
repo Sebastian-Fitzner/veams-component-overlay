@@ -1,3 +1,8 @@
+### v2.0.0
+- make module compatible with VeamsQuery
+- fix "template is not a function" issue
+- additional check for data passed via obj.options.data
+
 ### v1.0.6
 - minor refactoring
 
