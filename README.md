@@ -13,7 +13,7 @@ Latest version is ```v2.0.0```
 ## Requirements
 
 ### JavaScript
-- `Veams-JS >= v3.4.0`
+- `Veams-JS >= v3.6.0`
 
 ## Usage
 
