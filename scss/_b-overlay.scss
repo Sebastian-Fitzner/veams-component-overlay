@@ -3,16 +3,20 @@ BLOCK: OVERLAY
 =================================================== */
 
 /* ---------------------------------------------------
+Global Variables
+--------------------------------------------------- */
+
+// Animation Variables
+$overlay-duration: 300ms !default;
+$overlay-ease-method: ease !default;
+
+$overlay-color-bg: #000;
+$overlay-color-btn-close: #fff;
+
+/* ---------------------------------------------------
 Global Styles
 --------------------------------------------------- */
 [data-css="b-overlay"] {
-
-	/*
-	Local Vars
-	----------------------- */
-	$color-bg: #000;
-	$color-btn-close: #fff;
-	$speed: $transition-duration / 2;
 
 	/*
 	Standard styles
@@ -32,7 +36,7 @@ Global Styles
 	&.is-open {
 		height: 100%;
 		opacity: 1;
-		transition: opacity $speed $transition-ease-method;
+		transition: opacity $overlay-duration $overlay-ease-method;
 		visibility: visible;
 		width: 100%;
 	}
@@ -66,7 +70,7 @@ Global Styles
 			@include centering(hv);
 
 			content: 'x';
-			color: $color-btn-close;
+			color: $overlay-color-btn-close;
 		}
 	}
 
@@ -93,7 +97,7 @@ Global Styles
 	Mask
 	----------------------- */
 	.overlay__mask {
-		background: $color-bg;
+		background: $overlay-color-bg;
 		height: 100%;
 		position: fixed;
 		top: 0;

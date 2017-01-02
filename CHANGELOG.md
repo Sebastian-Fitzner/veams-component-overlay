@@ -1,3 +1,10 @@
+### v2.1.0
+- Refactor JS to support version 4 of Veams-JS
+- Add all important notes to readme
+- Exclude Insertpoints into own file
+- Add self-contained option
+- Create module based variables in global context
+
 ### v2.0.0
 - make module compatible with VeamsQuery
 - fix "template is not a function" issue

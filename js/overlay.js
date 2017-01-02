@@ -8,19 +8,18 @@
  * to display their content in an overlay.
  *
  * @module Overlay
- * @version v2.0.0
+ * @version v2.1.0
  *
  * @author Sebastian Fitzner
  */
 
-import Helpers from '../../utils/helpers';
-import App from '../../app';
-import AppModule from '../_global/module';
+import App from 'app';
+import AppModule from 'app-module';
 
 const $ = App.$;
+const Helpers = App.Helpers;
 
-let Handlebars = require('handlebars/runtime')['default'];
-let Template = require('../../templates/templates')(Handlebars);
+let Template = App.Templates;
 
 class Overlay extends AppModule {
 	/**
@@ -53,7 +52,7 @@ class Overlay extends AppModule {
 	static get info() {
 		return {
 			name: 'Overlay',
-			version: '2.0.0',
+			version: '2.1.0',
 			vc: true,
 			mod: false // set to true if source was modified in project
 		};
